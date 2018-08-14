@@ -88,7 +88,7 @@ public class TimeEntryApiTest {
 
 
         ResponseEntity<String> updateResponse = restTemplate.exchange("/time-entries/" + id, HttpMethod.PUT, new HttpEntity<>(updatedTimeEntry, null), String.class);
-
+        System.out.println(updateResponse.getBody());
 
         assertThat(updateResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
 
