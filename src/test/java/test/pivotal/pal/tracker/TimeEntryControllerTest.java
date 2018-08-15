@@ -8,6 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
+import org.springframework.boot.actuate.metrics.CounterService;
+import org.springframework.boot.actuate.metrics.GaugeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -20,11 +22,15 @@ import static java.util.Arrays.asList;
 public class TimeEntryControllerTest {
     private TimeEntryRepository timeEntryRepository;
     private TimeEntryController controller;
+    private CounterService counter;
+    private GaugeService gauge;
 
     @Before
     public void setUp() throws Exception {
         timeEntryRepository = Mockito.mock(TimeEntryRepository.class);
-        controller = new TimeEntryController(timeEntryRepository);
+        counter= Mockito.mock(CounterService.class);
+        gauge= Mockito.mock(GaugeService.class);
+        controller = new TimeEntryController(timeEntryRepository, counter, gauge);
     }
 
     @Test
